@@ -10,9 +10,9 @@
       <mat-card>
         <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" novalidate>
           <mat-form-field class="full">
-            <input matInput formControlName="email" placeholder="Username" autocomplete="off">
+            <input matInput formControlName="userName" placeholder="Username" autocomplete="off">
             <mat-error *ngIf="loginFormErrors.email.required">
-              Email is required
+              userName is required
             </mat-error>
             <mat-error *ngIf="!loginFormErrors.email.required && loginFormErrors.email.email">
               Please enter a valid email address

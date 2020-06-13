@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,52 +21,45 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      userName: ['', [Validators.required]],
       password: ['', Validators.required]
     });
 
     this.loginForm.valueChanges.subscribe(() => {
-      this.onLoginFormValuesChanged(); 
+      this.onLoginFormValuesChanged();
     });
   }
 
   onSubmit(data) {
     console.log(data);
-    const body = new URLSearchParams();
-    body.set('email', data.email);
-    body.set('password', data.password);
-    // this.authService.postData('login', body.toString()).subscribe(response => {
-    //   this.authService.setLoader(false);
-    //   if (response.data) {
-    //     const res = response.data;
-    //     localStorage.setItem('token', res.token);
-    //     localStorage.setItem('email', res.email);
-    //     localStorage.setItem('firstName', res.first_name);
-    //     localStorage.setItem('pass', data.password);
-    //     this.router.navigateByUrl('/starter');
-    //   }
-    // }, error => {
-    //     this.authService.setLoader(false);
-    //     this.toast.error(error);
-    //   });
-}
+    this.authService.login(data).subscribe(response => {
+      console.log(response);
+      // this.authService.setLoader(false);
+      // if (response.data) {
+      //   this.router.navigateByUrl('/starter');
+      // }
+    }, error => {
+      // this.authService.setLoader(false);
+      // this.toast.error(error);
+    });
+  }
 
-onLoginFormValuesChanged() {
-  for (const field in this.loginFormErrors) {
-    if (!this.loginFormErrors.hasOwnProperty(field)) {
-      continue;
-    }
+  onLoginFormValuesChanged() {
+    for (const field in this.loginFormErrors) {
+      if (!this.loginFormErrors.hasOwnProperty(field)) {
+        continue;
+      }
 
-    // Clear previous errors
-    this.loginFormErrors[field] = {};
+      // Clear previous errors
+      this.loginFormErrors[field] = {};
 
-    // Get the control
-    const control = this.loginForm.get(field);
+      // Get the control
+      const control = this.loginForm.get(field);
 
-    if (control && control.dirty && !control.valid) {
-      this.loginFormErrors[field] = control.errors;
+      if (control && control.dirty && !control.valid) {
+        this.loginFormErrors[field] = control.errors;
+      }
     }
   }
-}
 
 }

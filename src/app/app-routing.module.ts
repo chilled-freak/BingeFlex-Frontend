@@ -16,10 +16,12 @@ const routes: Routes = [
     data: { title: 'Login' }
   },
   {
-    path: 'sign-up',
+    path: 'signup',
     component: SignUpComponent,
-    data: { title: 'sign-up' }
+    data: { title: 'signup' }
   },
+  // { path: '403', redirectTo: '', component: }
+  { path: '**', redirectTo: 'login' },
 ]
 
 @NgModule({
@@ -27,6 +29,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes),
     CommonModule
   ],
-  exports:[RouterModule]
+  exports: [RouterModule]
 })
+
 export class AppRoutingModule { }
