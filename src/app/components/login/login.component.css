@@ -1,0 +1,32 @@
+.mat-card{
+    box-shadow: 5px 5px 5px 5px #008080 !important;
+}
+
+.input{
+    width: 100%;
+}
+
+.full{
+    width: 100%;
+}
+
+.center{
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.margin{
+    margin-top:200px;   
+}
+
+.mat-card{
+    height: 230px;
+}
+
+.bottom{
+    margin-top: 20px;
+    text-align: center;
+}
+
+  

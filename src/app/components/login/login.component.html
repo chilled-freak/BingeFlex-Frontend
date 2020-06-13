@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="row text-center margin">
+    <div class="col-12">
+      <h2>Login</h2>
+    </div>
+  </div>
+
+  <div class="row center">
+    <div class="col-6">
+      <mat-card>
+        <form name="loginForm" [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)" novalidate>
+          <mat-form-field class="full">
+            <input matInput formControlName="email" placeholder="Username" autocomplete="off">
+            <mat-error *ngIf="loginFormErrors.email.required">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="!loginFormErrors.email.required && loginFormErrors.email.email">
+              Please enter a valid email address
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full">
+            <input matInput formControlName="password" type="password" placeholder="Password" autocomplete="off">
+            <mat-error *ngIf="loginFormErrors.password.required">
+              password is required
+            </mat-error>
+          </mat-form-field>
+
+          <div class="bottom">
+            <button mat-raised-button class="btn" color="warn">Login</button>
+          </div>
+        </form>
+      </mat-card>
+    </div>
+  </div>
+</div>
